@@ -1,4 +1,4 @@
-package requerimiento2;
+package requerimiento2y3;
 
 public class Main_Requerimiento2 {
 

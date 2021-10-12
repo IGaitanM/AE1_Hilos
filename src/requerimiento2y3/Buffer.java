@@ -1,4 +1,4 @@
-package requerimiento2;
+package requerimiento2y3;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -21,6 +21,7 @@ public class Buffer {
 				e.printStackTrace();
 			}
 		}
+		
 		// Si el buffer no esta lleno entonces se añaden más emails.
 		try {
 			//Pero para 500 milisegundos antes de añadir otro email.
@@ -28,14 +29,16 @@ public class Buffer {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		
 		//invocamos al método para descartar al remitente pikachu@gmail.com
-		descartePikachu (email);
+		descartePikachu(email);
 		//Se notifica a los consumidores de emails que ya pueden coger emais del buffer
 		notify();
 	}
 	
 	public synchronized Email getEmail(){
 		Email email = null;
+		
 		//Si la capacidad del buffer esta vacía no se pueden coger emails del buffer
 		while(buffer.size() == 0){
 			try {
@@ -45,6 +48,7 @@ public class Buffer {
 				e.printStackTrace();
 			}
 		}
+		
 		//Si no está vacío el buffer, mandamos coger un email.
 		email = buffer.poll();
 		
@@ -56,13 +60,19 @@ public class Buffer {
 	//Método para descartar al destinatario pikachu@gmail.com
 	public void descartePikachu (Email email) {
 		String descarte= "pikachu@gmail.com";
-			if (email.getDestinatario()==descarte)
+			if (email.getDestinatario()==descarte) {
 				System.out.println("ATENCIÓN!!! el email con ID:" + email.getId() + " con destinatario " + descarte + " ha sido descartado" );
-			else {
-				buffer.offer(email);
-			}
-			
-			
+				
+			}else 
+				buffer.add(email);	
 	}
+	
+	// Devuelve true si la cola esta vacia, en caso contrario False. La usaremos
+		// para controlar al hilo consumidor.
+		public boolean isEmpty() {
+			return buffer.isEmpty();
+			
+		}
+	
 }
 	

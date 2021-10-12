@@ -1,4 +1,4 @@
-package requerimiento2;
+package requerimiento2y3;
 
 public class ConsumidorEmail extends Thread{
 
@@ -12,12 +12,13 @@ public class ConsumidorEmail extends Thread{
 	}
 	
 	public void run(){
-		
-		for(int i = 1;i <= 10;i++){
+		do {
 			Email email = buffer.getEmail();
 			System.out.println(nombre + " ha enviado el email: " + email.toString());
-			
-		}
+		}while (buffer.isEmpty() == false) ;
+	
+					
+		
 	}
 
 }
