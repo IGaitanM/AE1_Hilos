@@ -28,7 +28,8 @@ public class Buffer {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		buffer.offer(email);;
+		//invocamos al método para descartar al remitente pikachu@gmail.com
+		descartePikachu (email);
 		//Se notifica a los consumidores de emails que ya pueden coger emais del buffer
 		notify();
 	}
@@ -50,6 +51,18 @@ public class Buffer {
 		//Notificamos a los consumidores de emails que ya pueden coger emails del buffer.
 		notify();
 		return email;
+	}
+	
+	//Método para descartar al destinatario pikachu@gmail.com
+	public void descartePikachu (Email email) {
+		String descarte= "pikachu@gmail.com";
+			if (email.getDestinatario()==descarte)
+				System.out.println("ATENCIÓN!!! el email con ID:" + email.getId() + " con destinatario " + descarte + " ha sido descartado" );
+			else {
+				buffer.offer(email);
+			}
+			
+			
 	}
 }
 	

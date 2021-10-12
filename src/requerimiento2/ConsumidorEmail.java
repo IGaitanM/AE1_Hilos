@@ -14,8 +14,8 @@ public class ConsumidorEmail extends Thread{
 	public void run(){
 		
 		for(int i = 1;i <= 10;i++){
-			Email mail = buffer.getEmail();
-			System.out.println(nombre + " ha enviado el email: " + mail.toString());
+			Email email = buffer.getEmail();
+			System.out.println(nombre + " ha enviado el email: " + email.toString());
 			
 		}
 	}
