@@ -11,6 +11,7 @@ public class ConsumidorEmail extends Thread{
 		this.buffer = buffer;
 	}
 	
+	//Coge un email del buffer siempre que no se encuentre vacío.
 	public void run(){
 		do {
 			Email email = buffer.getEmail();

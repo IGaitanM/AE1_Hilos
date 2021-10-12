@@ -67,8 +67,7 @@ public class Buffer {
 				buffer.add(email);	
 	}
 	
-	// Devuelve true si la cola esta vacia, en caso contrario False. La usaremos
-		// para controlar al hilo consumidor.
+	// Método para saber si el buffer está vacío y utilizarlo en la clase consumidor
 		public boolean isEmpty() {
 			return buffer.isEmpty();
 			
