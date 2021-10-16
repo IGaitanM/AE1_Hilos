@@ -9,17 +9,14 @@ public class ConsumidorEmail extends Thread{
 		super();
 		this.nombre = nombre;
 		this.buffer = buffer;
-	}
 	
-	//Coge un email del buffer siempre que no se encuentre vacío.
-	public void run(){
-		do {
+	
+	//Coge un email del buffer .
+	
+		for(int i = 1;i <= 10;i++){
 			Email email = buffer.getEmail();
-			System.out.println(nombre + " ha enviado el email: " + email.toString());
-		}while (buffer.isEmpty() == false) ;
-	
-					
-		
+				System.out.println(nombre + " ha consumido el mensaje: " + email);		
+		}
 	}
 
 }

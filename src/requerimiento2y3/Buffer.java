@@ -22,14 +22,6 @@ public class Buffer {
 			}
 		}
 		
-		// Si el buffer no esta lleno entonces se añaden más emails.
-		try {
-			//Pero para 500 milisegundos antes de añadir otro email.
-			Thread.sleep(500);//
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
 		//invocamos al método para descartar al remitente pikachu@gmail.com
 		descartePikachu(email);
 		//Se notifica a los consumidores de emails que ya pueden coger emais del buffer
@@ -63,15 +55,21 @@ public class Buffer {
 			if (email.getDestinatario()==descarte) {
 				System.out.println("ATENCIÓN!!! el email con ID:" + email.getId() + " con destinatario " + descarte + " ha sido descartado" );
 				
-			}else 
-				buffer.add(email);	
+			}else {
+				// Si el buffer no esta lleno entonces se añaden más emails.
+				try {
+					//Pero para 500 milisegundos antes de añadir otro email.
+					Thread.sleep(500);//
+					buffer.offer(email);	
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				
+			}
 	}
 	
-	// Método para saber si el buffer está vacío y utilizarlo en la clase consumidor
-		public boolean isEmpty() {
-			return buffer.isEmpty();
-			
-		}
+	
+		
 	
 }
 	
